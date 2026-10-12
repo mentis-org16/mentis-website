@@ -1,0 +1,20 @@
+- Render it server side 
+- submit to search consol 
+- no index tags
+- canonical tags 
+- one H1 per page 
+- breadcrumbs 
+- alt text on images 
+- fix layout shift 
+- no AI CONTENT 
+- backlink from forbes 
+- customm 404s page 
+- generate sitemap.xml 
+- unblock googlebot 
+- dont rediirect chains 
+- meta description 
+- FAQ schema 
+- link orphan pages 
+- image -> WebP 
+- load under 2s 
+- author bio 
