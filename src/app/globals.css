@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─── */
+@theme {
+  --color-graphite-950: #0a0a0a;
+  --color-graphite-900: #141414;
+  --color-graphite-800: #1a1a1a;
+  --color-graphite-700: #262626;
+  --color-graphite-600: #333333;
+  --color-graphite-500: #525252;
+  --color-graphite-400: #737373;
+  --color-graphite-300: #a3a3a3;
+  --color-graphite-200: #d4d4d4;
+  --color-graphite-100: #e5e5e5;
+  --color-graphite-50: #f5f5f5;
+
+  --color-crimson-700: #b91c1c;
+  --color-crimson-600: #dc2626;
+  --color-crimson-500: #ef4444;
+  --color-crimson-400: #f87171;
+  --color-crimson-100: #fee2e2;
+
+  --color-surface: #fafafa;
+  --color-surface-alt: #f0f0f0;
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Base Styles ─── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: var(--font-body);
+    color: var(--color-graphite-800);
+    background-color: var(--color-surface);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--color-graphite-900);
+  }
+
+  h1 { font-size: clamp(2.5rem, 5vw + 1rem, 4.5rem); }
+  h2 { font-size: clamp(1.875rem, 3vw + 0.5rem, 3rem); }
+  h3 { font-size: clamp(1.25rem, 2vw + 0.25rem, 1.75rem); }
+  h4 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); }
+
+  p {
+    max-width: 65ch;
+    line-height: 1.7;
+  }
+
+  a {
+    color: inherit;
+    text-decoration-skip-ink: auto;
+  }
+
+  img, video, svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  button {
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-crimson-600);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-crimson-600);
+    color: white;
+  }
+}
+
+/* ─── Utility Classes ─── */
+@layer utilities {
+  .container-wide {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-wide {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-wide {
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+  }
+
+  .label-caps {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-graphite-400);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .grid-swiss {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .grid-swiss {
+      gap: 2rem;
+    }
+  }
+}
+
+/* ─── Component Styles ─── */
+@layer components {
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: white;
+    background-color: var(--color-graphite-900);
+    border: none;
+    border-radius: 0;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-crimson-600);
+  }
+
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-graphite-900);
+    background-color: transparent;
+    border: 1.5px solid var(--color-graphite-200);
+    border-radius: 0;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-graphite-900);
+  }
+
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-graphite-100);
+  }
+
+  .card-elevated {
+    background-color: white;
+    border: 1px solid var(--color-graphite-100);
+    padding: 2rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card-elevated:hover {
+    border-color: var(--color-graphite-200);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  }
+}
