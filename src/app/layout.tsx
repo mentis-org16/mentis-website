@@ -9,72 +9,50 @@ const inter = Inter({
   variable: "--font-body",
   display: "swap",
 });
-
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
 });
-
 const siteUrl = "https://mentisai-delta.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Mentis AI — Digital Solutions for Education",
+    default: "Mentis AI — Digital products for education",
     template: "%s | Mentis AI",
   },
   description:
-    "Mentis AI builds websites, AI assistants, and automation tools for schools, academies, and education businesses in Pakistan.",
-  keywords: [
-    "education technology",
-    "school websites",
-    "academy software",
-    "AI assistant",
-    "Pakistan education",
-    "Mentis AI",
-  ],
+    "Mentis AI builds thoughtful websites, enquiry journeys and practical software for schools, academies and education businesses.",
+  applicationName: "Mentis AI",
   authors: [{ name: "Mentis AI" }],
   creator: "Mentis AI",
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "en_PK",
     url: siteUrl,
     siteName: "Mentis AI",
-    title: "Mentis AI — Digital Solutions for Education",
+    title: "Mentis AI — Digital products for education",
     description:
-      "Websites, AI assistants, and automation tools for schools, academies, and education businesses.",
+      "Thoughtful websites, enquiry journeys and practical software for schools, academies and education businesses.",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Mentis AI — Digital Solutions for Education",
+    card: "summary",
+    title: "Mentis AI — Digital products for education",
     description:
-      "Websites, AI assistants, and automation tools for schools, academies, and education businesses.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  alternates: {
-    canonical: siteUrl,
+      "Thoughtful websites and practical software for education businesses.",
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
-      <body className="bg-surface text-graphite-800 antialiased">
+      <body id="top">
+        <a className="skip-link" href="#main-content">
+          Skip to content
+        </a>
         <Header />
         <main id="main-content">{children}</main>
         <Footer />

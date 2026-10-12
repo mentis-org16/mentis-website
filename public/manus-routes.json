@@ -1,0 +1,10 @@
+{
+  "routes": [
+    { "path": "/", "title": "Home" },
+    { "path": "/services", "title": "Services" },
+    { "path": "/education", "title": "Education solutions" },
+    { "path": "/about", "title": "About" },
+    { "path": "/contact", "title": "Contact" },
+    { "path": "/privacy", "title": "Privacy" }
+  ]
+}

@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mentis AI website
 
-## Getting Started
+A Next.js App Router website for Mentis AI, an independent technology business building useful digital products for education businesses.
 
-First, run the development server:
+## Run locally
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Quality checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run type-check
+npm run build
+```
 
-## Learn More
+## Pages
 
-To learn more about Next.js, take a look at the following resources:
+- `/` — homepage and service overview
+- `/services` — capabilities
+- `/education` — education-sector approach
+- `/about` — company point of view
+- `/contact` — direct email, phone and WhatsApp links
+- `/privacy` — current website privacy note
+- `/sitemap.xml` and `/robots.txt` — crawl metadata
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The route manifest at `public/manus-routes.json` lists the public pages.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contact behavior
 
-## Deploy on Vercel
+There is intentionally no form that implies a backend submission. Visitors can contact Mentis AI using the verified email `menttis.ai@gmail.com`, phone `+92 300 9853541`, or WhatsApp link. Messages are handled by the selected external service.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment and canonical URL
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The current public deployment inspected during this rebuild is `https://mentisai-delta.vercel.app/`. It is used as the canonical site origin in metadata and sitemap generation. Update the site URL in `src/app/layout.tsx`, `src/app/sitemap.ts`, and `src/app/robots.ts` together if the verified production domain changes.
+
+The app uses the repository's Next.js build and is suitable for Vercel's standard Next.js deployment. No extra environment variables are required by the marketing site.
