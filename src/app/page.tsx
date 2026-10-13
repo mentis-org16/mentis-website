@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowDown,
@@ -11,118 +12,108 @@ import {
 } from "lucide-react";
 import { AcademyAssistant } from "@/components/home/AcademyAssistant";
 import { PackagesSection } from "@/components/home/PackagesSection";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { GENERAL_ENQUIRY_MESSAGE, getWhatsAppHref } from "@/lib/whatsapp";
+import { getRouteMetadata } from "@/lib/site";
+
+const pageDescription =
+  "Websites, AI assistants, workflow automation and custom software for businesses. Mentis AI also works with schools, academies and learning organisations.";
+
+export const metadata: Metadata = {
+  title: "Digital solutions for business | Mentis AI",
+  description: pageDescription,
+  ...getRouteMetadata(
+    "/",
+    "Digital solutions for business | Mentis AI",
+    pageDescription,
+  ),
+};
 
 const capabilities = [
   {
     number: "01",
     icon: Blocks,
     title: "Websites & web applications",
-    text: "Give customers and communities a clear, responsive way to understand what you offer and take the next step.",
+    text: "Give customers a clear, responsive way to understand your offer, find useful information and take the next step.",
   },
   {
     number: "02",
     icon: MessageCircle,
-    title: "AI assistants & intelligent agents",
-    text: "Explore assistants that answer common questions from approved information, with sensible limits and a route to a person.",
+    title: "AI assistants & agents",
+    text: "Explore purpose-scoped assistants that answer common questions from information you approve, with a route to a person.",
   },
   {
     number: "03",
     icon: Workflow,
     title: "Workflow automation",
-    text: "Reduce repetitive hand-offs and connect compatible tools when doing so makes everyday work easier.",
+    text: "Reduce repetitive hand-offs and connect compatible tools where that makes everyday work easier to manage.",
   },
   {
     number: "04",
     icon: Braces,
     title: "Custom software",
-    text: "When off-the-shelf tools do not fit, shape a focused digital system around your requirements and constraints.",
+    text: "When existing tools do not fit, scope a focused digital system around your requirements and constraints.",
   },
   {
     number: "05",
     icon: GraduationCap,
-    title: "Education solutions",
-    text: "Support schools, academies and learning businesses with useful websites, enquiry journeys and administrative tools.",
+    title: "Education technology",
+    text: "Support schools, academies and learning businesses with useful sites, enquiry journeys and administrative tools.",
   },
 ];
 
 const faqs = [
   [
-    "Who do you work with?",
-    "We work with businesses and organisations that need a useful digital solution. Schools, academies, coaching centres and education businesses are an important part of our focus—not the only audience.",
+    "Who does Mentis AI work with?",
+    "We work with businesses and organisations looking for a useful digital solution. Schools, academies, coaching centres and education businesses are an important specialism—not the only audience.",
   ],
   [
     "What if I am not sure what to build?",
-    "That is a good place to start. Tell us what is getting in the way; we can discuss the problem before recommending a website, workflow, assistant or custom software.",
+    "Start with what is getting in the way. We can discuss the problem and constraints before deciding whether a website, workflow, assistant or custom software is suitable.",
   ],
   [
-    "Can an assistant use information we approve?",
-    "A real assistant can be scoped around information your organisation approves, with suitable limits and a route to a person. The one on this page is a local illustration only.",
+    "Is the Academy Assistant a live AI service?",
+    "No. It is a fictional, local demonstration with predefined example replies. It does not connect to an AI service, academy, WhatsApp or student records.",
   ],
   [
-    "How do scope, price and timing work?",
-    "They depend on the project. We clarify goals and requirements first, then agree the deliverables, timeline, revision terms and any third-party costs before work begins.",
+    "How are scope, pricing and timing agreed?",
+    "They depend on the project. Deliverables, timeline, revision terms, support and any third-party costs are clarified before work begins. Contact us for pricing.",
   ],
   [
-    "Can you work with tools we already use?",
-    "We can assess integration options during discovery. Feasibility depends on the systems, interfaces and access available, and any ongoing service costs are discussed up front.",
+    "Can a solution work with our existing tools?",
+    "Integration options can be assessed during discovery. Feasibility depends on the systems, interfaces and access available, and any ongoing service costs are discussed up front.",
   ],
-];
-
-export const metadata: Metadata = {
-  alternates: { canonical: "/" },
-};
-
-function SpatialMark() {
-  return (
-    <div className="spatial" aria-hidden="true">
-      <div className="spatial-caption">
-        <span>SYSTEMS, CONNECTED</span>
-        <span>01 — 03</span>
-      </div>
-      <div className="spatial-orbit spatial-orbit-a" />
-      <div className="spatial-orbit spatial-orbit-b" />
-      <div className="spatial-orbit spatial-orbit-c" />
-      <div className="spatial-core">
-        <span className="core-dot" />
-        <span className="core-label">
-          MENTIS
-          <br />
-          AI
-        </span>
-      </div>
-      <span className="node node-one">CONNECT</span>
-      <span className="node node-two">SUPPORT</span>
-      <span className="node node-three">AUTOMATE</span>
-      <div className="spatial-coordinate">
-        33°41&apos; N
-        <br />
-        73°03&apos; E
-      </div>
-      <div className="spatial-index">
-        A considered
-        <br />
-        digital foundation
-      </div>
-    </div>
-  );
-}
+] as const;
 
 export default function Home() {
+  const faqStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(([question, answer]) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answer,
+      },
+    })),
+  };
+
   return (
     <>
+      <JsonLd data={faqStructuredData} />
       <section className="hero container" aria-labelledby="hero-title">
         <div className="hero-copy">
           <p className="eyebrow">
-            <span className="eyebrow-line" /> Digital solutions for business
+            <span className="eyebrow-line" /> Digital products · Islamabad
           </p>
           <h1 id="hero-title">
-            Digital solutions for <em>the way you work.</em>
+            Useful digital systems, <em>built around your work.</em>
           </h1>
           <p className="hero-intro">
-            We build websites, AI assistants, workflow automation and custom
-            software for businesses. We also help schools, academies and
-            education organisations improve the digital parts of their work.
+            We design and build websites, AI assistants, workflow automation and
+            custom software for businesses. Education is a specialism, not the
+            whole story.
           </p>
           <div className="hero-actions">
             <a
@@ -131,22 +122,38 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Tell us what you need <ArrowRight size={16} aria-hidden="true" />
+              Tell us what needs to work better{" "}
+              <ArrowRight size={16} aria-hidden="true" />
             </a>
             <Link className="text-link" href="/services">
-              Explore our services <ArrowDown size={15} aria-hidden="true" />
+              Explore services <ArrowDown size={15} aria-hidden="true" />
             </Link>
           </div>
-          <div className="hero-note">
-            <span className="note-rule" /> Independent digital solutions studio
-            <br />
-            Working from Islamabad, Pakistan
-          </div>
+          <p className="hero-note">
+            Start with the people, the task and the constraints.
+          </p>
         </div>
-        <SpatialMark />
-        <div className="hero-index">
+
+        <aside className="hero-brand-panel" aria-label="Mentis AI identity">
+          <p className="eyebrow hero-brand-label">Mentis AI / 01</p>
+          <Image
+            className="hero-logo"
+            src="/brand/mentis-ai-lockup.webp"
+            alt="Mentis AI logo"
+            width={500}
+            height={482}
+            priority
+            sizes="(max-width: 760px) 72vw, 360px"
+          />
+          <p className="hero-brand-caption">
+            Websites <span>/</span> Assistants <span>/</span> Workflows{" "}
+            <span>/</span> Software
+          </p>
+        </aside>
+
+        <div className="hero-index" aria-label="Areas of work">
           <span>01</span>
-          <span>PRODUCT THINKING × SOFTWARE × PRACTICAL AI</span>
+          <span>WEBSITES × PRACTICAL AI × AUTOMATION × SOFTWARE</span>
         </div>
       </section>
 
@@ -154,10 +161,10 @@ export default function Home() {
         <div className="container intro-band-inner">
           <p className="eyebrow">The point is the work</p>
           <p className="intro-statement">
-            Good technology makes the <span>important work easier to do.</span>
+            Good technology makes <span>important work easier to do.</span>
           </p>
           <p className="intro-aside">
-            We start with the people, task and constraints—then work out which
+            We understand the people, task and limits first—then work out which
             digital solution actually fits.
           </p>
         </div>
@@ -168,6 +175,7 @@ export default function Home() {
         id="capabilities"
         aria-labelledby="capabilities-title"
       >
+        <span id="work" className="anchor-alias" aria-hidden="true" />
         <div className="section-heading">
           <div>
             <p className="eyebrow">
@@ -201,7 +209,7 @@ export default function Home() {
           ))}
         </div>
         <Link className="underlined-link" href="/services">
-          See our capabilities <ArrowRight size={15} aria-hidden="true" />
+          See the services <ArrowRight size={15} aria-hidden="true" />
         </Link>
       </section>
 
@@ -210,12 +218,8 @@ export default function Home() {
       <section className="education-section" aria-labelledby="education-title">
         <div className="container education-layout">
           <div className="education-stamp">
-            <span>ONE AREA OF FOCUS</span>
-            <strong>
-              EDU
-              <br />
-              CATION
-            </strong>
+            <span>AN AREA OF FOCUS</span>
+            <strong>EDUCATION</strong>
             <span>BUILT AROUND PEOPLE</span>
           </div>
           <div className="education-copy">
@@ -231,7 +235,7 @@ export default function Home() {
               without adding friction.
             </p>
             <p>
-              We bring the same practical approach to other businesses too:
+              We bring the same problem-first approach to other organisations:
               understand the day-to-day work, identify what could be better, and
               scope a useful way forward.
             </p>
@@ -240,16 +244,17 @@ export default function Home() {
               <ArrowRight size={16} aria-hidden="true" />
             </Link>
           </div>
-          <div className="education-coordinate">
-            ISLAMABAD / PAKISTAN
+          <p className="education-coordinate">
+            BASED IN ISLAMABAD
             <br />
-            WORKING EVERYWHERE
-          </div>
+            PAKISTAN
+          </p>
         </div>
       </section>
 
       <section
         className="section container process-section"
+        id="process"
         aria-labelledby="process-title"
       >
         <div className="section-heading">
@@ -268,7 +273,7 @@ export default function Home() {
             process collaborative and the scope grounded.
           </p>
         </div>
-        <div className="process-steps process-steps-four">
+        <div className="process-steps">
           <article>
             <span>01 / DISCUSS</span>
             <h3>Understand the problem</h3>
@@ -281,16 +286,16 @@ export default function Home() {
             <span>02 / SCOPE</span>
             <h3>Agree what matters</h3>
             <p>
-              We define the deliverables, timeline and practical constraints
-              before implementation begins.
+              We define deliverables, timeline and practical constraints before
+              implementation begins.
             </p>
           </article>
           <article>
             <span>03 / BUILD</span>
             <h3>Make and review</h3>
             <p>
-              We build the agreed solution in considered steps and make space
-              for your feedback.
+              We build the agreed solution in considered steps and make room for
+              your feedback.
             </p>
           </article>
           <article>
@@ -340,7 +345,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="closing-cta" aria-labelledby="cta-title">
+      <section className="closing-cta" id="contact" aria-labelledby="cta-title">
         <div className="container closing-inner">
           <p className="eyebrow eyebrow-light">A good place to begin</p>
           <h2 id="cta-title">
@@ -350,8 +355,8 @@ export default function Home() {
           </h2>
           <div className="closing-bottom">
             <p>
-              A website, an operational bottleneck, an assistant or an idea for
-              custom software—we would like to hear about it.
+              A website, a workflow, an assistant or an idea for custom
+              software—start by telling us what is getting in the way.
             </p>
             <a
               className="button button-light"
@@ -362,9 +367,14 @@ export default function Home() {
               Tell us what you need <ArrowRight size={16} aria-hidden="true" />
             </a>
           </div>
-          <span className="closing-mark" aria-hidden="true">
-            M.
-          </span>
+          <Image
+            className="closing-mark"
+            src="/brand/mentis-ai-mark.webp"
+            alt=""
+            width={80}
+            height={77}
+            sizes="80px"
+          />
         </div>
       </section>
     </>

@@ -4,22 +4,23 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Page not found",
+  description:
+    "That Mentis AI page could not be found. Browse services or return home.",
 };
 
 export default function NotFound() {
   return (
-    <section className="not-found container">
+    <section className="not-found container" aria-labelledby="not-found-title">
       <p className="eyebrow">
         <span className="eyebrow-line" /> 404 / Page not found
       </p>
-      <h1>
-        This page took
-        <br />
-        <em>a different route.</em>
+      <h1 id="not-found-title">
+        This page took a
+        <br /> <em>different route.</em>
       </h1>
       <p>
-        The address may have changed, or the page may no longer be here. You can
-        return to the homepage or browse our services.
+        The address may have changed, or the page may no longer be here. Return
+        to the homepage, browse our services, or get in touch.
       </p>
       <div>
         <Link className="button button-dark" href="/">

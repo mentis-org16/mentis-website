@@ -1,33 +1,25 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { getRouteMetadata } from "@/lib/site";
+
+const description =
+  "How the Mentis AI marketing website and its fictional, local Academy Assistant example handle information.";
 
 export const metadata: Metadata = {
-  title: "Privacy",
-  description:
-    "How the Mentis AI website and its local assistant demonstration handle information.",
-  alternates: { canonical: "/privacy" },
-  openGraph: {
-    url: "/privacy",
-    title: "Privacy | Mentis AI",
-    description:
-      "How the Mentis AI website and its local assistant demonstration handle information.",
-  },
-  twitter: {
-    title: "Privacy | Mentis AI",
-    description:
-      "How the Mentis AI website and its local assistant demonstration handle information.",
-  },
+  title: "Website privacy information",
+  description,
+  ...getRouteMetadata(
+    "/privacy",
+    "Website privacy information | Mentis AI",
+    description,
+  ),
 };
 
 export default function PrivacyPage() {
   return (
     <article className="interior-page">
       <div className="container">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page">Privacy</span>
-        </nav>
+        <Breadcrumbs label="Privacy" path="/privacy" />
         <header className="interior-hero">
           <p className="eyebrow">
             <span className="eyebrow-line" /> Website information

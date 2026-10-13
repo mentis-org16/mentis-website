@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Menu, X } from "lucide-react";
@@ -30,20 +31,23 @@ export function Header() {
     <header className="site-header">
       <div className="header-inner container">
         <Link
-          className="wordmark"
+          className="site-brand"
           href="/"
           aria-label="Mentis AI home"
           onClick={closeMenu}
         >
-          <span className="wordmark-symbol" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </span>
-          <span>
-            mentis<span className="wordmark-ai">/ai</span>
-          </span>
+          <Image
+            className="site-brand-mark"
+            src="/brand/mentis-ai-mark.webp"
+            alt=""
+            width={44}
+            height={43}
+            priority
+            sizes="44px"
+          />
+          <span className="site-brand-name">Mentis AI</span>
         </Link>
+
         <nav className="desktop-nav" aria-label="Main navigation">
           {navItems.map((item) => (
             <Link
@@ -61,6 +65,7 @@ export function Header() {
             Contact
           </Link>
         </nav>
+
         <a
           className="header-cta"
           href={getWhatsAppHref(GENERAL_ENQUIRY_MESSAGE)}
@@ -69,6 +74,7 @@ export function Header() {
         >
           WhatsApp us <ArrowRight size={14} aria-hidden="true" />
         </a>
+
         <button
           className="menu-toggle"
           type="button"
@@ -84,6 +90,7 @@ export function Header() {
           )}
         </button>
       </div>
+
       <nav
         id="mobile-navigation"
         className={`mobile-nav${isMenuOpen ? " is-open" : ""}`}
@@ -105,7 +112,7 @@ export function Header() {
           Contact
           <ArrowRight size={16} aria-hidden="true" />
         </Link>
-        <p>Islamabad, Pakistan · Working everywhere</p>
+        <p>Based in Islamabad, Pakistan</p>
       </nav>
     </header>
   );

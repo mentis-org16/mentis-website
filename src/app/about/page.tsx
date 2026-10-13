@@ -1,34 +1,27 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { getRouteMetadata } from "@/lib/site";
+
+const description =
+  "Mentis AI is an Islamabad-based digital solutions business building practical websites, AI assistants, automation and custom software for organisations.";
 
 export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Meet Mentis AI, an independent Islamabad-based technology studio building practical websites, AI assistants, workflow automation and custom software for businesses.",
-  alternates: { canonical: "/about" },
-  openGraph: {
-    url: "/about",
-    title: "About Mentis AI",
-    description:
-      "A practical technology partner for businesses, with education as an important area of focus.",
-  },
-  twitter: {
-    title: "About Mentis AI",
-    description:
-      "A practical technology partner for businesses, with education as an important area of focus.",
-  },
+  title: "Our approach to digital work",
+  description,
+  ...getRouteMetadata(
+    "/about",
+    "Our approach to digital work | Mentis AI",
+    description,
+  ),
 };
 
 export default function AboutPage() {
   return (
     <article className="interior-page">
       <div className="container">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page">About</span>
-        </nav>
+        <Breadcrumbs label="About" path="/about" />
         <header className="interior-hero">
           <p className="eyebrow">
             <span className="eyebrow-line" /> About Mentis AI
@@ -39,9 +32,9 @@ export default function AboutPage() {
             <em>earn its place.</em>
           </h1>
           <p>
-            Mentis AI is an independent software and design business based in
-            Islamabad. We help businesses and organisations make practical,
-            considered use of digital technology.
+            Mentis AI is an Islamabad-based digital solutions business. We help
+            businesses and organisations make practical, considered use of
+            technology.
           </p>
         </header>
         <section className="about-statement">
@@ -62,14 +55,18 @@ export default function AboutPage() {
               That may mean a carefully built website, a more considered enquiry
               journey, a bounded AI assistant, an automation or a focused
               internal tool. Education is an important area of focus, but the
-              same problem-first approach applies to businesses beyond
-              education. Not every problem needs AI, and no single solution
-              suits every organisation.
+              same problem-first approach applies to other businesses. Not every
+              problem needs AI, and no single solution suits every organisation.
             </p>
           </div>
         </section>
-        <section className="about-principles">
-          <p className="eyebrow">How we approach the work</p>
+        <section
+          className="about-principles"
+          aria-labelledby="principles-title"
+        >
+          <p className="eyebrow" id="principles-title">
+            How we approach the work
+          </p>
           <div>
             <h3>Useful over impressive.</h3>
             <p>Choose technology for the job it can genuinely do.</p>
@@ -81,8 +78,7 @@ export default function AboutPage() {
           <div>
             <h3>Collaborative by default.</h3>
             <p>
-              Agree the scope and constraints with the people closest to the
-              work.
+              Agree scope and constraints with the people closest to the work.
             </p>
           </div>
         </section>

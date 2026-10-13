@@ -19,16 +19,19 @@ export function AcademyAssistant() {
     { id: 0, role: "assistant", text: ACADEMY_GREETING },
   ]);
   const nextId = useRef(1);
-  const latestMessageRef = useRef<HTMLDivElement>(null);
+  const chatLogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (messages.length <= 1) return;
+    const chatLog = chatLogRef.current;
+    if (!chatLog) return;
+
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    latestMessageRef.current?.scrollIntoView({
+    chatLog.scrollTo({
+      top: chatLog.scrollHeight,
       behavior: reduceMotion ? "auto" : "smooth",
-      block: "end",
     });
   }, [messages]);
 
@@ -99,6 +102,7 @@ export function AcademyAssistant() {
 
         <div
           className="assistant-demo"
+          role="region"
           aria-label="Academy Assistant local demo"
         >
           <header className="assistant-demo-header">
@@ -113,6 +117,7 @@ export function AcademyAssistant() {
           </header>
 
           <div
+            ref={chatLogRef}
             className="assistant-chat-log"
             role="log"
             aria-label="Academy Assistant demonstration conversation"
@@ -131,12 +136,12 @@ export function AcademyAssistant() {
                 <p>{message.text}</p>
               </article>
             ))}
-            <div ref={latestMessageRef} aria-hidden="true" />
           </div>
 
           <div className="assistant-compose-area">
             <div
               className="assistant-suggestions"
+              role="group"
               aria-label="Suggested questions"
             >
               {SUGGESTED_QUESTIONS.map((question) => (

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -7,35 +6,28 @@ import {
   MessageCircle,
   Phone,
 } from "lucide-react";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { GENERAL_ENQUIRY_MESSAGE, getWhatsAppHref } from "@/lib/whatsapp";
+import { getRouteMetadata } from "@/lib/site";
+
+const description =
+  "Contact Mentis AI about websites, AI assistants, workflow automation and custom software for businesses and education organisations.";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Contact Mentis AI about websites, AI assistants, business automation and custom software for businesses and education teams in Islamabad, Pakistan.",
-  alternates: { canonical: "/contact" },
-  openGraph: {
-    url: "/contact",
-    title: "Contact Mentis AI",
-    description:
-      "Start a conversation with Mentis AI about your business's digital needs.",
-  },
-  twitter: {
-    title: "Contact Mentis AI",
-    description:
-      "Start a conversation with Mentis AI about your business's digital needs.",
-  },
+  title: "Talk about your digital project",
+  description,
+  ...getRouteMetadata(
+    "/contact",
+    "Talk about your digital project | Mentis AI",
+    description,
+  ),
 };
 
 export default function ContactPage() {
   return (
     <article className="interior-page contact-page">
       <div className="container">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page">Contact</span>
-        </nav>
+        <Breadcrumbs label="Contact" path="/contact" />
         <div className="contact-layout">
           <header className="interior-hero">
             <p className="eyebrow">
@@ -57,7 +49,7 @@ export default function ContactPage() {
               not store your enquiry.
             </p>
           </header>
-          <div className="contact-options">
+          <div className="contact-options" aria-label="Contact options">
             <a
               className="contact-option contact-option-primary"
               href={getWhatsAppHref(GENERAL_ENQUIRY_MESSAGE)}
@@ -67,7 +59,7 @@ export default function ContactPage() {
               <span className="contact-icon">
                 <MessageCircle size={20} aria-hidden="true" />
               </span>
-              <span>
+              <span className="contact-option-copy">
                 <small>WHATSAPP · PREFERRED</small>
                 <strong>+92 300 9853541</strong>
                 <span>Open a ready-to-edit project enquiry</span>
@@ -78,7 +70,7 @@ export default function ContactPage() {
               <span className="contact-icon">
                 <Mail size={20} aria-hidden="true" />
               </span>
-              <span>
+              <span className="contact-option-copy">
                 <small>EMAIL</small>
                 <strong>menttis.ai@gmail.com</strong>
                 <span>For a project note or a detailed question</span>
@@ -89,7 +81,7 @@ export default function ContactPage() {
               <span className="contact-icon">
                 <Phone size={20} aria-hidden="true" />
               </span>
-              <span>
+              <span className="contact-option-copy">
                 <small>PHONE</small>
                 <strong>+92 300 9853541</strong>
                 <span>Call Mentis AI directly</span>
@@ -100,11 +92,7 @@ export default function ContactPage() {
         </div>
         <div className="contact-footnote">
           <span>01 / LOCATION</span>
-          <p>
-            Islamabad, Pakistan
-            <br />
-            Working with businesses and education teams wherever they are.
-          </p>
+          <p>Islamabad, Pakistan</p>
         </div>
       </div>
     </article>

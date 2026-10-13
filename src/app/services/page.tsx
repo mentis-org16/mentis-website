@@ -1,40 +1,37 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { getRouteMetadata } from "@/lib/site";
+
+const description =
+  "Websites, practical AI assistants, workflow automation and custom software for businesses and organisations, including education teams.";
 
 export const metadata: Metadata = {
-  title: "Services",
-  description:
-    "Websites, AI assistants, business automation, integrations, dashboards and custom software for businesses and organisations in Pakistan.",
-  alternates: { canonical: "/services" },
-  openGraph: {
-    url: "/services",
-    title: "Services | Mentis AI",
-    description:
-      "Practical digital solutions for businesses, organisations and education teams.",
-  },
-  twitter: {
-    title: "Services | Mentis AI",
-    description:
-      "Practical digital solutions for businesses, organisations and education teams.",
-  },
+  title: "Digital services for businesses",
+  description,
+  ...getRouteMetadata(
+    "/services",
+    "Digital services for businesses | Mentis AI",
+    description,
+  ),
 };
 
 const services = [
   [
     "01",
     "Websites & digital experiences",
-    "A clear, responsive home for your business or organisation online. We help shape the content and build a considered digital experience that makes your offer and next step easier to understand.",
+    "A clear, responsive home for your business or organisation online. We help shape the content and build an experience that makes your offer and next step easier to understand.",
   ],
   [
     "02",
     "Enquiry & customer workflows",
-    "Connect the first question to the right next action. We can explore enquiry capture, routing and follow-up workflows around how your team actually works—including admissions for education organisations.",
+    "Connect a first question to a useful next action. We can explore enquiry capture, routing and follow-up around how your team works—including admissions enquiries for education organisations.",
   ],
   [
     "03",
     "Practical AI assistants",
-    "Purpose-scoped assistants can answer routine questions using information your organisation approves, with suitable limits and a clear route to a person.",
+    "Purpose-scoped assistants can answer routine questions using information your organisation approves, with appropriate limits and a clear route to a person.",
   ],
   [
     "04",
@@ -44,7 +41,7 @@ const services = [
   [
     "05",
     "Dashboards & custom software",
-    "When off-the-shelf tools do not fit, we can explore focused internal tools and dashboards that make information and everyday tasks easier to work with.",
+    "When off-the-shelf tools do not fit, scope focused internal tools and dashboards around the information and everyday tasks your team needs to work with.",
   ],
   [
     "06",
@@ -57,11 +54,7 @@ export default function ServicesPage() {
   return (
     <article className="interior-page">
       <div className="container">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page">Services</span>
-        </nav>
+        <Breadcrumbs label="Services" path="/services" />
         <header className="interior-hero">
           <p className="eyebrow">
             <span className="eyebrow-line" /> What we do
@@ -73,15 +66,14 @@ export default function ServicesPage() {
           </h1>
           <p>
             We bring design and engineering to practical business problems:
-            websites, AI assistants, automation, custom software and the tools
-            behind them. Education organisations are an important part of our
-            work too.
+            websites, assistants, automation and custom software. Education is
+            an important area of focus too.
           </p>
         </header>
         <div className="service-detail-list">
           {services.map(([number, title, text]) => (
             <section className="service-detail" key={number}>
-              <span>{number}</span>
+              <span className="service-number">{number}</span>
               <div>
                 <h2>{title}</h2>
                 <p>{text}</p>

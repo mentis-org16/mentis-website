@@ -1,34 +1,27 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { getRouteMetadata } from "@/lib/site";
+
+const description =
+  "Digital experiences and practical software shaped around the needs of schools, academies, coaching centres and education businesses.";
 
 export const metadata: Metadata = {
-  title: "Education solutions",
-  description:
-    "Digital experiences and practical software shaped around the needs of schools, academies, coaching centres and education businesses.",
-  alternates: { canonical: "/education" },
-  openGraph: {
-    url: "/education",
-    title: "Education solutions | Mentis AI",
-    description:
-      "Digital experiences and practical software shaped around the needs of schools, academies and education businesses.",
-  },
-  twitter: {
-    title: "Education solutions | Mentis AI",
-    description:
-      "Digital experiences and practical software shaped around the needs of schools, academies and education businesses.",
-  },
+  title: "Education digital solutions",
+  description,
+  ...getRouteMetadata(
+    "/education",
+    "Education digital solutions | Mentis AI",
+    description,
+  ),
 };
 
 export default function EducationPage() {
   return (
     <article className="interior-page">
       <div className="container">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page">Education</span>
-        </nav>
+        <Breadcrumbs label="Education" path="/education" />
         <header className="interior-hero">
           <p className="eyebrow">
             <span className="eyebrow-line" /> Built with education in mind
@@ -50,8 +43,8 @@ export default function EducationPage() {
             <h2>Help families find what they need.</h2>
             <p>
               Make programmes, schedules, admissions information and next steps
-              easier to understand. A good website respects a family&apos;s time
-              and gives your team a clearer place to point people.
+              easier to understand. A useful website respects a family&apos;s
+              time and gives your team a clearer place to point people.
             </p>
           </section>
           <section>
@@ -59,8 +52,8 @@ export default function EducationPage() {
             <h2>Make enquiries easier to handle.</h2>
             <p>
               Thoughtful intake and follow-up can make the path from a question
-              to a conversation more consistent. We first learn what information
-              your team needs and how it should reach them.
+              to a conversation more consistent. Start by deciding what
+              information your team needs and how it should reach them.
             </p>
           </section>
           <section>
@@ -76,8 +69,8 @@ export default function EducationPage() {
             <span className="detail-index">04 / FIT THE CONTEXT</span>
             <h2>Respect how your institution works.</h2>
             <p>
-              We consider your existing tools, audience, content and constraints
-              before recommending a solution. The right result may be a focused
+              Consider existing tools, audience, content and constraints before
+              recommending a solution. The right result may be a focused
               improvement, not a wholesale replacement.
             </p>
           </section>
