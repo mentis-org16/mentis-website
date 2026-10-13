@@ -61,8 +61,7 @@ export default function ServicesPage() {
           </p>
           <h1>
             Digital work with
-            <br />
-            <em>a clear purpose.</em>
+            <br /> <em>a clear purpose.</em>
           </h1>
           <p>
             We bring design and engineering to practical business problems:
@@ -87,8 +86,7 @@ export default function ServicesPage() {
             <p className="eyebrow">No preset package required</p>
             <h2>
               Let&apos;s start with
-              <br />
-              <em>what you need.</em>
+              <br /> <em>what you need.</em>
             </h2>
           </div>
           <Link className="button button-dark" href="/contact">

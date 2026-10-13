@@ -183,8 +183,7 @@ export default function Home() {
             </p>
             <h2 id="capabilities-title">
               Useful by design.
-              <br />
-              <em>Built to fit.</em>
+              <br /> <em>Built to fit.</em>
             </h2>
           </div>
           <p className="section-lead">
@@ -226,8 +225,7 @@ export default function Home() {
             <p className="eyebrow eyebrow-light">Thoughtfully applied</p>
             <h2 id="education-title">
               The details matter
-              <br />
-              when <em>people are learning.</em>
+              <br /> when <em>people are learning.</em>
             </h2>
             <p>
               Families need clear information. Admissions teams need enquiries
@@ -246,8 +244,7 @@ export default function Home() {
           </div>
           <p className="education-coordinate">
             BASED IN ISLAMABAD
-            <br />
-            PAKISTAN
+            <br /> PAKISTAN
           </p>
         </div>
       </section>
@@ -264,8 +261,7 @@ export default function Home() {
             </p>
             <h2 id="process-title">
               Start with the
-              <br />
-              <em>actual problem.</em>
+              <br /> <em>actual problem.</em>
             </h2>
           </div>
           <p className="section-lead">
@@ -319,8 +315,7 @@ export default function Home() {
             </p>
             <h2 id="faq-title">
               Before we
-              <br />
-              <em>get started.</em>
+              <br /> <em>get started.</em>
             </h2>
             <p className="faq-intro">
               Still have a question? Tell us what you are working on and we can
@@ -350,8 +345,7 @@ export default function Home() {
           <p className="eyebrow eyebrow-light">A good place to begin</p>
           <h2 id="cta-title">
             Tell us what needs
-            <br />
-            <em>to work better.</em>
+            <br /> <em>to work better.</em>
           </h2>
           <div className="closing-bottom">
             <p>

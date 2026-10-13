@@ -17,7 +17,13 @@ const eslintConfig = defineConfig([
   {
     files: ["tests/**/*.mjs", "scripts/**/*.mjs"],
     languageOptions: {
-      globals: { process: "readonly" },
+      globals: {
+        AbortSignal: "readonly",
+        URL: "readonly",
+        console: "readonly",
+        fetch: "readonly",
+        process: "readonly",
+      },
     },
   },
   globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),

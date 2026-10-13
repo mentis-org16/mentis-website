@@ -26,8 +26,7 @@ export default function PrivacyPage() {
           </p>
           <h1>
             Privacy,
-            <br />
-            <em>made clear.</em>
+            <br /> <em>made clear.</em>
           </h1>
           <p>
             This page describes the current Mentis AI marketing website, not

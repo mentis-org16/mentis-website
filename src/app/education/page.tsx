@@ -28,8 +28,7 @@ export default function EducationPage() {
           </p>
           <h1>
             Every learning community
-            <br />
-            <em>has its own way.</em>
+            <br /> <em>has its own way.</em>
           </h1>
           <p>
             A school, academy or coaching centre is more than a set of pages. It

@@ -28,8 +28,7 @@ export default function AboutPage() {
           </p>
           <h1>
             Technology should
-            <br />
-            <em>earn its place.</em>
+            <br /> <em>earn its place.</em>
           </h1>
           <p>
             Mentis AI is an Islamabad-based digital solutions business. We help
@@ -42,8 +41,7 @@ export default function AboutPage() {
           <div>
             <h2>
               Start with people.
-              <br />
-              Solve the real thing.
+              <br /> Solve the real thing.
             </h2>
             <p>
               Good work comes from understanding the people who use a service
@@ -87,8 +85,7 @@ export default function AboutPage() {
             <p className="eyebrow">Based in Islamabad, Pakistan</p>
             <h2>
               Good work begins
-              <br />
-              <em>with a conversation.</em>
+              <br /> <em>with a conversation.</em>
             </h2>
           </div>
           <Link className="button button-dark" href="/contact">

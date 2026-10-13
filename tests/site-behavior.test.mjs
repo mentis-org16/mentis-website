@@ -8,9 +8,10 @@ process.env.NEXT_PUBLIC_SITE_URL = "";
 const testBuildDirectory = process.env.MENTIS_TEST_BUILD_DIR;
 assert.ok(testBuildDirectory, "Run tests through scripts/run-tests.mjs");
 const require = createRequire(import.meta.url);
-const { getCanonicalUrl } = require(
+const siteModulePath = require.resolve(
   join(testBuildDirectory, "src/lib/site.js"),
 );
+const { getCanonicalUrl } = require(siteModulePath);
 const {
   ACADEMY_GREETING,
   SUGGESTED_QUESTIONS,
@@ -19,6 +20,35 @@ const {
 const { getWhatsAppHref, WHATSAPP_NUMBER } = require(
   join(testBuildDirectory, "src/lib/whatsapp.js"),
 );
+
+function withSiteConfiguration(configuration, callback) {
+  const keys = ["NEXT_PUBLIC_SITE_URL", "VERCEL", "VERCEL_ENV"];
+  const previous = new Map(keys.map((key) => [key, process.env[key]]));
+  const cachedModule = require.cache[siteModulePath];
+
+  try {
+    for (const key of keys) {
+      if (Object.hasOwn(configuration, key)) {
+        const value = configuration[key];
+        if (value === undefined) delete process.env[key];
+        else process.env[key] = value;
+      } else if (key === "VERCEL" || key === "VERCEL_ENV") {
+        delete process.env[key];
+      }
+    }
+
+    delete require.cache[siteModulePath];
+    return callback(() => require(siteModulePath));
+  } finally {
+    for (const key of keys) {
+      const value = previous.get(key);
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+    delete require.cache[siteModulePath];
+    if (cachedModule) require.cache[siteModulePath] = cachedModule;
+  }
+}
 
 test("the demo greets visitors and includes suggested topics", () => {
   assert.match(ACADEMY_GREETING, /welcome/i);
@@ -56,6 +86,91 @@ test("unknown input gets an honest non-production fallback", () => {
 test("canonical generation emits no guessed domain by default", () => {
   assert.equal(getCanonicalUrl("/services"), undefined);
   assert.equal(getCanonicalUrl("/sitemap.xml"), undefined);
+});
+
+test("a configured HTTPS origin generates route-specific canonical and social URLs", () => {
+  withSiteConfiguration(
+    {
+      NEXT_PUBLIC_SITE_URL: "https://www.mentis.example",
+      VERCEL: "",
+      VERCEL_ENV: "",
+    },
+    (loadSite) => {
+      const site = loadSite();
+      const canonical = "https://www.mentis.example/education";
+      assert.equal(site.SITE_ORIGIN, "https://www.mentis.example");
+      assert.equal(site.getCanonicalUrl("/education"), canonical);
+
+      const metadata = site.getRouteMetadata(
+        "/education",
+        "Education | Mentis AI",
+        "Education technology for learning organisations.",
+      );
+      assert.equal(metadata.alternates.canonical, canonical);
+      assert.equal(metadata.openGraph.url, canonical);
+      assert.equal(
+        metadata.openGraph.images[0].url,
+        "https://www.mentis.example/brand/mentis-ai-lockup.webp",
+      );
+    },
+  );
+});
+
+test("an origin rejects HTTP, credentials, paths, queries and fragments", () => {
+  const invalidOrigins = [
+    "http://mentis.example",
+    "https://user:secret@mentis.example",
+    "https://mentis.example/site",
+    "https://mentis.example/?preview=1",
+    "https://mentis.example/#home",
+  ];
+
+  for (const origin of invalidOrigins) {
+    assert.throws(
+      () =>
+        withSiteConfiguration(
+          {
+            NEXT_PUBLIC_SITE_URL: origin,
+            VERCEL: "",
+            VERCEL_ENV: "",
+          },
+          (loadSite) => loadSite(),
+        ),
+      /verified HTTPS origin/i,
+      origin,
+    );
+  }
+});
+
+test("localhost is available only for local verification, not a Vercel build", () => {
+  withSiteConfiguration(
+    {
+      NEXT_PUBLIC_SITE_URL: "http://localhost:3000",
+      VERCEL: "",
+      VERCEL_ENV: "",
+    },
+    (loadSite) => {
+      assert.equal(loadSite().SITE_ORIGIN, "http://localhost:3000");
+    },
+  );
+
+  for (const platform of [
+    { VERCEL: "1", VERCEL_ENV: "preview" },
+    { VERCEL: "1", VERCEL_ENV: "production" },
+  ]) {
+    assert.throws(
+      () =>
+        withSiteConfiguration(
+          { NEXT_PUBLIC_SITE_URL: "http://localhost:3000", ...platform },
+          (loadSite) => loadSite(),
+        ),
+      /only allowed for local verification/i,
+    );
+  }
+});
+
+test("canonical paths must be absolute site paths", () => {
+  assert.throws(() => getCanonicalUrl("services"), /must start with/);
 });
 
 test("WhatsApp contact links use the intended number and encode messages", () => {

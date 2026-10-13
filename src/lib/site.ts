@@ -14,6 +14,14 @@ function resolveSiteOrigin(): string | undefined {
   }
 
   const isLocal = url.hostname === "localhost" || url.hostname === "127.0.0.1";
+  const isVercelBuild =
+    process.env.VERCEL === "1" || Boolean(process.env.VERCEL_ENV);
+  if (isLocal && isVercelBuild) {
+    throw new Error(
+      "A localhost site origin is only allowed for local verification, never for a Vercel build.",
+    );
+  }
+
   if (
     (url.protocol !== "https:" && !(isLocal && url.protocol === "http:")) ||
     url.username ||

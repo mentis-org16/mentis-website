@@ -35,8 +35,7 @@ export default function ContactPage() {
             </p>
             <h1>
               What would you
-              <br />
-              <em>like to work better?</em>
+              <br /> <em>like to work better?</em>
             </h1>
             <p>
               Tell us a little about your business or organisation and what you
