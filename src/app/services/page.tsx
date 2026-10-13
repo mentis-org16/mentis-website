@@ -5,18 +5,18 @@ import { ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Web design and development, admissions workflows, practical AI assistants, business automation and custom software for education businesses.",
+    "Websites, AI assistants, business automation, integrations, dashboards and custom software for businesses and organisations in Pakistan.",
   alternates: { canonical: "/services" },
   openGraph: {
     url: "/services",
     title: "Services | Mentis AI",
     description:
-      "Websites, admissions workflows, practical AI assistants, automation and custom software for education businesses.",
+      "Practical digital solutions for businesses, organisations and education teams.",
   },
   twitter: {
     title: "Services | Mentis AI",
     description:
-      "Websites, admissions workflows, practical AI assistants, automation and custom software for education businesses.",
+      "Practical digital solutions for businesses, organisations and education teams.",
   },
 };
 
@@ -24,32 +24,32 @@ const services = [
   [
     "01",
     "Websites & digital experiences",
-    "A clear, responsive home for your institution online. We help shape the content, design the experience and build a fast website that makes the next step easy to find.",
+    "A clear, responsive home for your business or organisation online. We help shape the content and build a considered digital experience that makes your offer and next step easier to understand.",
   ],
   [
     "02",
-    "Admissions & enquiry workflows",
-    "Connect the first question to the right next action. We can design enquiry forms, routing and follow-up workflows around how your team actually handles admissions.",
+    "Enquiry & customer workflows",
+    "Connect the first question to the right next action. We can explore enquiry capture, routing and follow-up workflows around how your team actually works—including admissions for education organisations.",
   ],
   [
     "03",
     "Practical AI assistants",
-    "Purpose-scoped assistants can help answer routine questions using information your organisation approves, with a clear route to a person when they cannot help.",
+    "Purpose-scoped assistants can answer routine questions using information your organisation approves, with suitable limits and a clear route to a person.",
   ],
   [
     "04",
     "Automation & integrations",
-    "Reduce repetitive hand-offs by connecting compatible tools and making recurring processes easier to manage. Integrations depend on the systems and access available.",
+    "Reduce repetitive hand-offs by connecting compatible tools and making recurring processes easier to manage. Feasibility depends on the systems, interfaces and access available.",
   ],
   [
     "05",
     "Dashboards & custom software",
-    "When off-the-shelf tools do not fit, we can explore focused internal tools and dashboards that make information and tasks easier to work with.",
+    "When off-the-shelf tools do not fit, we can explore focused internal tools and dashboards that make information and everyday tasks easier to work with.",
   ],
   [
     "06",
     "Ongoing improvement",
-    "Launch is a beginning, not a promise of perfection. Maintenance and improvements can be scoped to your needs, access and agreed support arrangement.",
+    "Maintenance and improvements can be scoped to your needs, access and an agreed support arrangement. Ongoing services and third-party costs are clarified before work begins.",
   ],
 ];
 
@@ -72,9 +72,10 @@ export default function ServicesPage() {
             <em>a clear purpose.</em>
           </h1>
           <p>
-            We bring design and engineering to the practical problems around
-            education—online experiences, admissions, operations and the tools
-            behind them.
+            We bring design and engineering to practical business problems:
+            websites, AI assistants, automation, custom software and the tools
+            behind them. Education organisations are an important part of our
+            work too.
           </p>
         </header>
         <div className="service-detail-list">

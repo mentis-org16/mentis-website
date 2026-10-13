@@ -5,18 +5,18 @@ import { ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Meet Mentis AI: an independent technology studio building useful digital products for education businesses from Islamabad, Pakistan.",
+    "Meet Mentis AI, an independent Islamabad-based technology studio building practical websites, AI assistants, workflow automation and custom software for businesses.",
   alternates: { canonical: "/about" },
   openGraph: {
     url: "/about",
     title: "About Mentis AI",
     description:
-      "An independent technology studio building useful digital solutions, particularly for education.",
+      "A practical technology partner for businesses, with education as an important area of focus.",
   },
   twitter: {
     title: "About Mentis AI",
     description:
-      "An independent technology studio building useful digital solutions, particularly for education.",
+      "A practical technology partner for businesses, with education as an important area of focus.",
   },
 };
 
@@ -39,8 +39,9 @@ export default function AboutPage() {
             <em>earn its place.</em>
           </h1>
           <p>
-            Mentis AI is an independent software and design business focused on
-            building useful digital solutions, particularly for education.
+            Mentis AI is an independent software and design business based in
+            Islamabad. We help businesses and organisations make practical,
+            considered use of digital technology.
           </p>
         </header>
         <section className="about-statement">
@@ -58,10 +59,12 @@ export default function AboutPage() {
               processes easier to manage.
             </p>
             <p>
-              That may mean a carefully built website, a better route for
-              admissions enquiries, a bounded AI assistant or a small internal
-              tool. We do not assume every problem needs AI, or that one
-              solution suits every institution.
+              That may mean a carefully built website, a more considered enquiry
+              journey, a bounded AI assistant, an automation or a focused
+              internal tool. Education is an important area of focus, but the
+              same problem-first approach applies to businesses beyond
+              education. Not every problem needs AI, and no single solution
+              suits every organisation.
             </p>
           </div>
         </section>

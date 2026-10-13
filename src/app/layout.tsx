@@ -19,11 +19,11 @@ const siteUrl = "https://mentisai-delta.vercel.app";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Mentis AI — Digital products for education",
+    default: "Mentis AI — Digital solutions for business",
     template: "%s | Mentis AI",
   },
   description:
-    "Mentis AI builds thoughtful websites, enquiry journeys and practical software for schools, academies and education businesses.",
+    "Mentis AI designs and builds websites, AI assistants, workflow automation and custom software for businesses and education organisations.",
   applicationName: "Mentis AI",
   authors: [{ name: "Mentis AI" }],
   creator: "Mentis AI",
@@ -32,15 +32,15 @@ export const metadata: Metadata = {
     locale: "en_PK",
     url: siteUrl,
     siteName: "Mentis AI",
-    title: "Mentis AI — Digital products for education",
+    title: "Mentis AI — Digital solutions for business",
     description:
-      "Thoughtful websites, enquiry journeys and practical software for schools, academies and education businesses.",
+      "Thoughtful websites, AI assistants, automation and custom software for businesses and education organisations.",
   },
   twitter: {
     card: "summary",
-    title: "Mentis AI — Digital products for education",
+    title: "Mentis AI — Digital solutions for business",
     description:
-      "Thoughtful websites and practical software for education businesses.",
+      "Websites, AI assistants, automation and custom software for businesses and education organisations.",
   },
 };
 

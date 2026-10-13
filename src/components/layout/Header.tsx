@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Menu, X } from "lucide-react";
+import { GENERAL_ENQUIRY_MESSAGE, getWhatsAppHref } from "@/lib/whatsapp";
 
 const navItems = [
   { name: "Services", href: "/services" },
@@ -60,9 +61,14 @@ export function Header() {
             Contact
           </Link>
         </nav>
-        <Link className="header-cta" href="/contact">
-          Start a conversation <ArrowRight size={14} aria-hidden="true" />
-        </Link>
+        <a
+          className="header-cta"
+          href={getWhatsAppHref(GENERAL_ENQUIRY_MESSAGE)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          WhatsApp us <ArrowRight size={14} aria-hidden="true" />
+        </a>
         <button
           className="menu-toggle"
           type="button"
