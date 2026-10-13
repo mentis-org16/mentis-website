@@ -24,6 +24,16 @@ npm audit
 npm audit --omit=dev
 ```
 
+GitHub Actions runs these checks on pull requests to `main` and pushes to `main` or the feature branch. The workflow also starts the built site in its runner and invokes the HTTP verifier. It **does not deploy**. If the repository variable `NEXT_PUBLIC_SITE_URL` is set to an owner-verified production origin, CI builds against and validates that origin; otherwise the no-guessed-origin behavior is checked.
+
+To verify a built site (`npm run build` followed by `npm run start`) from a second terminal, run the dependency-free route/SEO/security check:
+
+```bash
+npm run verify:site -- http://localhost:3000
+```
+
+The same check accepts a review preview URL. If the build intentionally uses a confirmed production origin, set `EXPECTED_SITE_ORIGIN=https://your-verified-domain.example` when running the verifier so canonicals and sitemap entries are checked against that exact origin. Never pass the temporary preview as the expected production origin.
+
 ## Pages and features
 
 - `/` — business-wide homepage, capabilities, fictional Academy Assistant example, process, package starting points and visible FAQs
