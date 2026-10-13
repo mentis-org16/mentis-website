@@ -4,18 +4,18 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Privacy",
   description:
-    "How the Mentis AI website handles information and direct contact links.",
+    "How the Mentis AI website and its local assistant demonstration handle information.",
   alternates: { canonical: "/privacy" },
   openGraph: {
     url: "/privacy",
     title: "Privacy | Mentis AI",
     description:
-      "How the Mentis AI website handles information and direct contact links.",
+      "How the Mentis AI website and its local assistant demonstration handle information.",
   },
   twitter: {
     title: "Privacy | Mentis AI",
     description:
-      "How the Mentis AI website handles information and direct contact links.",
+      "How the Mentis AI website and its local assistant demonstration handle information.",
   },
 };
 
@@ -49,13 +49,22 @@ export default function PrivacyPage() {
             tracker or contact-submission form. It does not ask you to enter
             personal details into the site.
           </p>
+          <h2>The Academy Assistant example</h2>
+          <p>
+            The Academy Assistant is a fictional, local demonstration. It uses
+            predefined example responses in your browser; it is not connected to
+            an AI service, a real academy, WhatsApp or student records. Messages
+            remain in the page&apos;s temporary in-memory state and are not sent
+            to Mentis AI or saved by this website.
+          </p>
           <h2>When you contact Mentis AI</h2>
           <p>
             Email, telephone and WhatsApp links open the relevant communication
-            service. If you choose to contact Mentis AI, your message and any
-            information you include are handled through that service and the
-            channel you selected. Avoid sending sensitive information unless it
-            is necessary.
+            service. WhatsApp opens a pre-addressed chat with an editable
+            message; nothing is sent until you choose to send it. If you choose
+            to contact Mentis AI, your message and any information you include
+            are handled through that service and the channel you selected. Avoid
+            sending sensitive information unless it is necessary.
           </p>
           <h2>Third-party services</h2>
           <p>

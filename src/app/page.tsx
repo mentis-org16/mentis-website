@@ -1,48 +1,71 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, Blocks, Braces, Workflow } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowRight,
+  Blocks,
+  Braces,
+  GraduationCap,
+  MessageCircle,
+  Workflow,
+} from "lucide-react";
+import { AcademyAssistant } from "@/components/home/AcademyAssistant";
+import { PackagesSection } from "@/components/home/PackagesSection";
+import { GENERAL_ENQUIRY_MESSAGE, getWhatsAppHref } from "@/lib/whatsapp";
 
 const capabilities = [
   {
     number: "01",
     icon: Blocks,
-    title: "Websites that explain the value",
-    text: "Clear, fast websites for schools, academies and education businesses—designed to answer the questions families actually have.",
+    title: "Websites & web applications",
+    text: "Give customers and communities a clear, responsive way to understand what you offer and take the next step.",
   },
   {
     number: "02",
-    icon: Workflow,
-    title: "Enquiry journeys that keep moving",
-    text: "Thoughtful admissions and enquiry flows that help a prospective student move from first visit to a useful conversation.",
+    icon: MessageCircle,
+    title: "AI assistants & intelligent agents",
+    text: "Explore assistants that answer common questions from approved information, with sensible limits and a route to a person.",
   },
   {
     number: "03",
+    icon: Workflow,
+    title: "Workflow automation",
+    text: "Reduce repetitive hand-offs and connect compatible tools when doing so makes everyday work easier.",
+  },
+  {
+    number: "04",
     icon: Braces,
-    title: "Software that fits the work",
-    text: "Practical AI assistants, automations, dashboards and integrations, scoped around a real process—not technology for its own sake.",
+    title: "Custom software",
+    text: "When off-the-shelf tools do not fit, shape a focused digital system around your requirements and constraints.",
+  },
+  {
+    number: "05",
+    icon: GraduationCap,
+    title: "Education solutions",
+    text: "Support schools, academies and learning businesses with useful websites, enquiry journeys and administrative tools.",
   },
 ];
 
 const faqs = [
   [
     "Who do you work with?",
-    "Schools, academies, coaching centres, educators and other education-focused businesses. We also consider adjacent projects where the problem and fit are clear.",
+    "We work with businesses and organisations that need a useful digital solution. Schools, academies, coaching centres and education businesses are an important part of our focus—not the only audience.",
   ],
   [
-    "Can a website reflect our institution's own process?",
-    "Yes. We start by understanding your audience, content and day-to-day workflow, then shape the site and enquiry path around those needs.",
+    "What if I am not sure what to build?",
+    "That is a good place to start. Tell us what is getting in the way; we can discuss the problem before recommending a website, workflow, assistant or custom software.",
   ],
   [
-    "Can an AI assistant use our approved information?",
-    "An assistant can be designed around information you provide and approve. Its scope, escalation behaviour and limitations should be agreed before it is introduced.",
+    "Can an assistant use information we approve?",
+    "A real assistant can be scoped around information your organisation approves, with suitable limits and a route to a person. The one on this page is a local illustration only.",
   ],
   [
-    "How are scope, timing and pricing decided?",
-    "They depend on the work. We clarify the goals, requirements and deliverables first, then discuss a project scope and estimate. We do not publish a one-size-fits-all promise.",
+    "How do scope, price and timing work?",
+    "They depend on the project. We clarify goals and requirements first, then agree the deliverables, timeline, revision terms and any third-party costs before work begins.",
   ],
   [
-    "Can you work with systems we already use?",
-    "We can assess existing tools and integration options during discovery. Feasibility depends on the systems' available interfaces and access.",
+    "Can you work with tools we already use?",
+    "We can assess integration options during discovery. Feasibility depends on the systems, interfaces and access available, and any ongoing service costs are discussed up front.",
   ],
 ];
 
@@ -54,7 +77,7 @@ function SpatialMark() {
   return (
     <div className="spatial" aria-hidden="true">
       <div className="spatial-caption">
-        <span>LEARNING, CONNECTED</span>
+        <span>SYSTEMS, CONNECTED</span>
         <span>01 — 03</span>
       </div>
       <div className="spatial-orbit spatial-orbit-a" />
@@ -65,18 +88,19 @@ function SpatialMark() {
         <span className="core-label">
           MENTIS
           <br />
-          SYSTEMS
+          AI
         </span>
       </div>
-      <span className="node node-one">DISCOVER</span>
-      <span className="node node-two">ENROL</span>
-      <span className="node node-three">SUPPORT</span>
+      <span className="node node-one">CONNECT</span>
+      <span className="node node-two">SUPPORT</span>
+      <span className="node node-three">AUTOMATE</span>
       <div className="spatial-coordinate">
-        33°41&apos; N<br />
+        33°41&apos; N
+        <br />
         73°03&apos; E
       </div>
       <div className="spatial-index">
-        A practical
+        A considered
         <br />
         digital foundation
       </div>
@@ -90,25 +114,31 @@ export default function Home() {
       <section className="hero container" aria-labelledby="hero-title">
         <div className="hero-copy">
           <p className="eyebrow">
-            <span className="eyebrow-line" /> Digital products for education
+            <span className="eyebrow-line" /> Digital solutions for business
           </p>
           <h1 id="hero-title">
-            Technology built around <em>how education works.</em>
+            Digital solutions for <em>the way you work.</em>
           </h1>
           <p className="hero-intro">
-            Mentis AI designs and builds websites, enquiry journeys and useful
-            software for schools, academies and education businesses.
+            We build websites, AI assistants, workflow automation and custom
+            software for businesses. We also help schools, academies and
+            education organisations improve the digital parts of their work.
           </p>
           <div className="hero-actions">
-            <Link className="button button-dark" href="/contact">
-              Talk about a project <ArrowRight size={16} aria-hidden="true" />
-            </Link>
+            <a
+              className="button button-dark"
+              href={getWhatsAppHref(GENERAL_ENQUIRY_MESSAGE)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Tell us what you need <ArrowRight size={16} aria-hidden="true" />
+            </a>
             <Link className="text-link" href="/services">
-              Explore what we build <ArrowDown size={15} aria-hidden="true" />
+              Explore our services <ArrowDown size={15} aria-hidden="true" />
             </Link>
           </div>
           <div className="hero-note">
-            <span className="note-rule" /> Independent technology studio
+            <span className="note-rule" /> Independent digital solutions studio
             <br />
             Working from Islamabad, Pakistan
           </div>
@@ -116,7 +146,7 @@ export default function Home() {
         <SpatialMark />
         <div className="hero-index">
           <span>01</span>
-          <span>DESIGN × ENGINEERING × EDUCATION</span>
+          <span>PRODUCT THINKING × SOFTWARE × PRACTICAL AI</span>
         </div>
       </section>
 
@@ -127,8 +157,8 @@ export default function Home() {
             Good technology makes the <span>important work easier to do.</span>
           </p>
           <p className="intro-aside">
-            We bring product thinking, careful design and software engineering
-            together around the realities of education.
+            We start with the people, task and constraints—then work out which
+            digital solution actually fits.
           </p>
         </div>
       </section>
@@ -151,7 +181,8 @@ export default function Home() {
           </div>
           <p className="section-lead">
             From a clear first impression to the processes behind it, each
-            engagement starts with the problem—not a preset package.
+            engagement starts with the problem—not a fixed technology or preset
+            solution.
           </p>
         </div>
         <div className="capability-list">
@@ -174,21 +205,21 @@ export default function Home() {
         </Link>
       </section>
 
+      <AcademyAssistant />
+
       <section className="education-section" aria-labelledby="education-title">
         <div className="container education-layout">
           <div className="education-stamp">
-            <span>MADE FOR</span>
+            <span>ONE AREA OF FOCUS</span>
             <strong>
               EDU
               <br />
               CATION
             </strong>
-            <span>NOT RETROFITTED</span>
+            <span>BUILT AROUND PEOPLE</span>
           </div>
           <div className="education-copy">
-            <p className="eyebrow eyebrow-light">
-              An education-first point of view
-            </p>
+            <p className="eyebrow eyebrow-light">Thoughtfully applied</p>
             <h2 id="education-title">
               The details matter
               <br />
@@ -200,9 +231,9 @@ export default function Home() {
               without adding friction.
             </p>
             <p>
-              We design around these everyday realities, whether the answer is a
-              better website, a small automation or a more considered digital
-              system.
+              We bring the same practical approach to other businesses too:
+              understand the day-to-day work, identify what could be better, and
+              scope a useful way forward.
             </p>
             <Link className="button button-light" href="/education">
               How we work with education{" "}
@@ -237,33 +268,43 @@ export default function Home() {
             process collaborative and the scope grounded.
           </p>
         </div>
-        <div className="process-steps">
+        <div className="process-steps process-steps-four">
           <article>
-            <span>01 / UNDERSTAND</span>
-            <h3>Listen before proposing</h3>
+            <span>01 / DISCUSS</span>
+            <h3>Understand the problem</h3>
             <p>
               We learn who you serve, what is getting in the way and what a
               useful outcome would look like.
             </p>
           </article>
           <article>
-            <span>02 / SHAPE</span>
+            <span>02 / SCOPE</span>
             <h3>Agree what matters</h3>
             <p>
-              We define the experience, scope and practical constraints together
+              We define the deliverables, timeline and practical constraints
               before implementation begins.
             </p>
           </article>
           <article>
             <span>03 / BUILD</span>
-            <h3>Make, review, improve</h3>
+            <h3>Make and review</h3>
             <p>
-              We deliver the agreed work in considered steps and leave room for
-              feedback and iteration.
+              We build the agreed solution in considered steps and make space
+              for your feedback.
+            </p>
+          </article>
+          <article>
+            <span>04 / DELIVER</span>
+            <h3>Test and hand over</h3>
+            <p>
+              We test the work, refine it with agreed feedback and arrange
+              launch or handover for the project.
             </p>
           </article>
         </div>
       </section>
+
+      <PackagesSection />
 
       <section className="faq-section" aria-labelledby="faq-title">
         <div className="container faq-layout">
@@ -309,12 +350,17 @@ export default function Home() {
           </h2>
           <div className="closing-bottom">
             <p>
-              A website, an operational bottleneck or an idea you are still
-              shaping—we would like to hear about it.
+              A website, an operational bottleneck, an assistant or an idea for
+              custom software—we would like to hear about it.
             </p>
-            <Link className="button button-light" href="/contact">
-              Start a conversation <ArrowRight size={16} aria-hidden="true" />
-            </Link>
+            <a
+              className="button button-light"
+              href={getWhatsAppHref(GENERAL_ENQUIRY_MESSAGE)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Tell us what you need <ArrowRight size={16} aria-hidden="true" />
+            </a>
           </div>
           <span className="closing-mark" aria-hidden="true">
             M.
