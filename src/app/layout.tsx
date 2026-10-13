@@ -1,80 +1,61 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
-import "./globals.css";
-import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
+import { getCanonicalUrl, SITE_ORIGIN } from "@/lib/site";
+import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-body",
-  display: "swap",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const siteUrl = "https://mentisai-delta.vercel.app";
+const title = "Mentis AI — Digital solutions for business";
+const description =
+  "Websites, AI assistants, workflow automation and custom software for businesses, with education as a specialism.";
+const socialImage = getCanonicalUrl("/brand/mentis-ai-lockup.webp");
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  ...(SITE_ORIGIN ? { metadataBase: new URL(SITE_ORIGIN) } : {}),
   title: {
-    default: "Mentis AI — Digital Solutions for Education",
+    default: title,
     template: "%s | Mentis AI",
   },
-  description:
-    "Mentis AI builds websites, AI assistants, and automation tools for schools, academies, and education businesses in Pakistan.",
-  keywords: [
-    "education technology",
-    "school websites",
-    "academy software",
-    "AI assistant",
-    "Pakistan education",
-    "Mentis AI",
-  ],
+  description,
+  applicationName: "Mentis AI",
   authors: [{ name: "Mentis AI" }],
   creator: "Mentis AI",
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: siteUrl,
+    locale: "en_PK",
     siteName: "Mentis AI",
-    title: "Mentis AI — Digital Solutions for Education",
-    description:
-      "Websites, AI assistants, and automation tools for schools, academies, and education businesses.",
+    title,
+    description,
+    ...(SITE_ORIGIN ? { url: SITE_ORIGIN } : {}),
+    ...(socialImage
+      ? {
+          images: [
+            {
+              url: socialImage,
+              width: 500,
+              height: 482,
+              alt: "Mentis AI logo",
+            },
+          ],
+        }
+      : {}),
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Mentis AI — Digital Solutions for Education",
-    description:
-      "Websites, AI assistants, and automation tools for schools, academies, and education businesses.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  alternates: {
-    canonical: siteUrl,
+    card: "summary",
+    title,
+    description,
+    ...(socialImage ? { images: [socialImage] } : {}),
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
-      <body className="bg-surface text-graphite-800 antialiased">
+    <html lang="en">
+      <body id="top">
+        <a className="skip-link" href="#main-content">
+          Skip to content
+        </a>
         <Header />
         <main id="main-content">{children}</main>
         <Footer />

@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mentis AI website
 
-## Getting Started
+A Next.js App Router website for Mentis AI, an Islamabad-based digital solutions business serving organisations and businesses. Education is an important specialism, not the only audience.
 
-First, run the development server:
+## Run locally
+
+Use Node.js `^20.19`, `^22.13`, or `>=24` for the complete local checks (including ESLint 10).
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Quality checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run type-check
+npm test
+npm run build
+npm audit
+npm audit --omit=dev
+```
 
-## Learn More
+GitHub Actions runs these checks on pull requests to `main` and pushes to `main` or the feature branch. The workflow also starts the built site in its runner and invokes the HTTP verifier. It **does not deploy**. If the repository variable `NEXT_PUBLIC_SITE_URL` is set to an owner-verified production origin, CI builds against and validates that origin; otherwise the no-guessed-origin behavior is checked.
 
-To learn more about Next.js, take a look at the following resources:
+To verify a built site (`npm run build` followed by `npm run start`) from a second terminal, run the dependency-free route/SEO/security check:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run verify:site -- http://localhost:3000
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The same check accepts a review preview URL. If the build intentionally uses a confirmed production origin, set `EXPECTED_SITE_ORIGIN=https://your-verified-domain.example` when running the verifier so canonicals and sitemap entries are checked against that exact origin. Never pass the temporary preview as the expected production origin.
 
-## Deploy on Vercel
+## Pages and features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `/` — business-wide homepage, capabilities, fictional Academy Assistant example, process, package starting points and visible FAQs
+- `/services` — websites, workflows, AI assistants, integrations, dashboards and custom software
+- `/education` — education-sector approach
+- `/about` — company point of view
+- `/contact` — pre-addressed WhatsApp, email and phone links; no mock submission form
+- `/privacy` — website and local-demo privacy information
+- `/sitemap.xml` and `/robots.txt` — public crawl metadata
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The route manifest at `public/manus-routes.json` lists the public pages.
+
+## Brand assets
+
+The supplied original Mentis logo remains in `context/WhatsApp Image 2026-07-12 at 11.02.44 PM.jpeg`. Transparent, proportion-preserving web derivatives live in `public/brand/`; Next.js uses matching symbol-based favicon, app and Apple touch icons from `src/app/`. The website palette is limited to neutrals sampled from `context/font idea.jfif`.
+
+## Contact and demo behavior
+
+The website uses the verified email `menttis.ai@gmail.com`, phone `+92 300 9853541`, WhatsApp `+92 300 9853541`, and the specified Mentis AI LinkedIn page. WhatsApp opens with an editable message; a visitor chooses whether to send it. The website does not store enquiries.
+
+The Academy Assistant is a **fictional, local-only demonstration**. Its question matching and example replies are in `src/lib/academy-assistant.ts`; it does not call an AI service, connect to an academy or send/store messages. It contains no real academy schedules, fee amounts, student data or staff credentials.
+
+The Starter, Growth and Enterprise cards are project discussion starting points, not fixed commercial terms. They publish no numeric prices and make no popularity or unlimited-revision claim. Confirm scope, revision limits, timeline, hosting/API/AI/messaging charges and support in writing before presenting a binding offer.
+
+## Production origin and SEO
+
+The actual production domain for this repository has **not** been verified. Do not assume that the prior reference URL `https://mentisai-delta.vercel.app/` is this repository's production domain. Until the owner confirms the correct HTTPS origin, the site intentionally omits canonical URLs, absolute `og:url` values and absolute sitemap entries rather than publishing guessed addresses.
+
+After verifying the new site's production domain, set it as the sole origin in `NEXT_PUBLIC_SITE_URL` (for example, `NEXT_PUBLIC_SITE_URL=https://your-verified-domain.example`, with the real verified domain substituted). Do not use a temporary preview URL. The metadata helper then generates route-specific canonical and social URLs, and the sitemap/robots handlers advertise the same origin. `NEXT_PUBLIC_SITE_URL=http://localhost:3000` is allowed for local verification only.
+
+The target Vercel project, linked repository and production domain require owner-authorized access and confirmation before any deployment or switch. This repository's PR and local/public preview can be reviewed independently. The previous Mentis site repository is retained as a rollback archive; it was not modified as part of this replacement work.
+
+The initial full-tree audit found five high-severity development-tree findings and zero production findings. The affected path was `eslint-config-next@16.4.0` → `@next/eslint-plugin-next@16.4.0` → `fast-glob@3.3.1` → `micromatch@4.0.8` → `braces@3.0.3`, for [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm). At audit time, the registry offered no patched compatible `braces` release; its published 3.x version was covered by the advisory. The suggested preset downgrade would have mismatched the Next 16.4 application, so the affected dev-only lint preset was removed and replaced with focused TypeScript and React Hooks lint rules. ESLint 10 and `@eslint/js` 10 are now used on the verified compatible Node range in `engines`. The final full and production-only audits both reported zero vulnerabilities. The target Vercel project's Node version still needs owner-authorized verification before deployment.
